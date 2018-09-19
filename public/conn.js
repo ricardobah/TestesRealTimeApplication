@@ -72,7 +72,7 @@ function removeImage(a) {
 }
 function renderImage() {
 
-    $('#euvirolaslaele').append('<img height="190" width="275" id="'+countID+'" src="http://bwshells.com/src/uploads/2012/03/VIROLA-4.jpg" >');
+    $('#euvirolaslaeleServidor').append('<img height="190" width="275" id="'+countID+'" src="http://bwshells.com/src/uploads/2012/03/VIROLA-4.jpg" >');
     countID++;
     var list = document.querySelectorAll("img");
 
