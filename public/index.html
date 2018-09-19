@@ -15,16 +15,33 @@
 </head>
 
 <body>
-    <div class="progress" style="width:30%;">
-        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">0%</div>
-    </div>
     <form id="chat">
+        <div class="progress" style="width:30%;">
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">0%</div>
+        </div>
        <!-- <input type="text" name="username" placeholder="Digite seu usuário">
         <div class="messages"></div>
         <input type="text" name="message" placeholder="Digite sua mensagem">!-->
         <button type="submit">Enviar</button>
 
     </form>
+
+    <form id="euvirolaslaele">
+            <div>
+
+                <img height="190" width="275" src="http://bwshells.com/src/uploads/2012/03/VIROLA-4.jpg" >
+                <img height="190" width="275" src="http://bwshells.com/src/uploads/2012/03/VIROLA-4.jpg" >
+                <img height="190" width="275" src="http://bwshells.com/src/uploads/2012/03/VIROLA-4.jpg" >
+                <img height="190" width="275" src="http://bwshells.com/src/uploads/2012/03/VIROLA-4.jpg" >
+            </div>
+           <!-- <input type="text" name="username" placeholder="Digite seu usuário">
+            <div class="messages"></div>
+            <input type="text" name="message" placeholder="Digite sua mensagem">!-->
+            <button type="submit">Enviar</button>
+    
+        </form>
+
+
     <script type="text/javascript">
         var socket = io('http://localhost:3000');
         var porcentagem =0;
@@ -46,9 +63,14 @@
     }
 
     socket.on('recivedMessage', function(message){
+        console.log("a");
         renderMessage(message);
     });
-
+    socket.on('renderImage', function(){
+        console.log("data");
+       renderImage();
+    });
+            //CHAT SUBMIT
         $('#chat').submit(function(event){
             event.preventDefault();
 
@@ -68,7 +90,37 @@
 
 
         });
+            //EUVIROLASLAELE SUBMIT
+            
+        $('#euvirolaslaele').submit(function(event){
+            event.preventDefault();
 
+
+                renderImage();
+                socket.emit('renderImage');
+          //  }
+        });
+
+        function removeImage(a){
+            a.remove();
+        }
+        function renderImage(){
+       
+            $('#euvirolaslaele').append('<img height="190" width="275" src="http://bwshells.com/src/uploads/2012/03/VIROLA-4.jpg" >');
+            var list = document.querySelectorAll("img");
+            
+            list.forEach(function(a){
+               
+            a.addEventListener("click",function(){
+              removeImage(a);
+             
+            socket.emit('clickImage');
+        });
+    }
+    );
+
+   
+        }
 
 
    </script>

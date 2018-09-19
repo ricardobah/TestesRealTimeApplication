@@ -25,10 +25,18 @@ io.on('connection', socket => {
     
 
         socket.on('sendMessage', data =>{
-        messages.push(data);
-        console.log(messages);
-        socket.broadcast.emit('recivedMessage',data);
+            messages.push(data);
+            socket.broadcast.emit('recivedMessage',data);
         });
+
+        socket.on('renderImage', data =>{
+           
+            messages.push(data);
+       
+            socket.broadcast.emit('renderImage',data);
+        });
+    
+
     
 });
 
