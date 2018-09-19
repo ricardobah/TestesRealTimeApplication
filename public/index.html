@@ -71,6 +71,7 @@
         });
 
         socket.on('clickImage', function (a) {
+            console.log("chamou "+a);
             removeImage(a);
         });
 
@@ -106,7 +107,11 @@
         });
 
         function removeImage(a) {
-           document.getElementById(a).remove();
+            var elemento = document.getElementById(a);
+            if(elemento){
+
+                elemento.remove();
+            }
         }
         function renderImage() {
 

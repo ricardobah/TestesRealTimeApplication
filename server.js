@@ -37,6 +37,13 @@ io.on('connection', socket => {
         });
     
 
+        socket.on('clickImage', data =>{
+           
+            messages.push(data);
+       
+            socket.broadcast.emit('clickImage',data);
+        });
+
     
 });
 
