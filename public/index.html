@@ -29,10 +29,7 @@
     <form id="euvirolaslaele">
             <div>
 
-                <img height="190" width="275" src="http://bwshells.com/src/uploads/2012/03/VIROLA-4.jpg" >
-                <img height="190" width="275" src="http://bwshells.com/src/uploads/2012/03/VIROLA-4.jpg" >
-                <img height="190" width="275" src="http://bwshells.com/src/uploads/2012/03/VIROLA-4.jpg" >
-                <img height="190" width="275" src="http://bwshells.com/src/uploads/2012/03/VIROLA-4.jpg" >
+             
             </div>
            <!-- <input type="text" name="username" placeholder="Digite seu usuário">
             <div class="messages"></div>
@@ -70,6 +67,11 @@
         console.log("data");
        renderImage();
     });
+
+     socket.on('clickImage', function(a){
+       removeImage(a);
+    });
+
             //CHAT SUBMIT
         $('#chat').submit(function(event){
             event.preventDefault();
@@ -90,13 +92,13 @@
 
 
         });
-            //EUVIROLASLAELE SUBMIT
+            //EU_VI_ROLAS_LAELE SUBMIT
             
         $('#euvirolaslaele').submit(function(event){
             event.preventDefault();
 
 
-                renderImage();
+                 renderImage();
                 socket.emit('renderImage');
           //  }
         });
@@ -112,9 +114,9 @@
             list.forEach(function(a){
                
             a.addEventListener("click",function(){
-              removeImage(a);
+              removeImage(this);
              
-            socket.emit('clickImage');
+            socket.emit('clickImage',this);
         });
     }
     );
